@@ -33,11 +33,11 @@ def contract_initialization(contract_address):
             wallet_out = Web3.toChecksumAddress(wallet_out.rstrip('\n'))
             balance = web3.fromWei(token_contract.functions.balanceOf(wallet_out).call(), 'ether')
             counter += 1
-            print(f'{counter}. {wallet_out} Balance: {balance}')
+            print(f'{counter}. {wallet_out} Balance: {round((balance), 2)}')
 
             if balance > 0:
                 with open(path_checked, 'a') as checked:
-                    checked.write(f'\n{wallet_out} - {balance}')
+                    checked.write(f'\n{wallet_out} - {round((balance), 2)}')
         del lines[0]
         with open(path_check, 'w') as eth:
             eth.writelines(lines)
